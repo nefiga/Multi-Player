@@ -32,11 +32,11 @@ public class GameServer extends Thread {
             try {
                 socket.receive(packet);
                 String type = new String(packet.getData()).substring(0, 2);
-                System.out.println("Packet Type: " + type);
-                if (type.equals("00") && !IPs.containsKey(Integer.toString(packet.getPort()))) {
-                    String user = new String(packet.getData());
+                System.out.println("SERVER > " + "Packet Type: " + type);
+                if (type.equals("00")) {
+                    String user = new String(packet.getData()).trim();
                     user = user.substring(2, user.length());
-                    System.out.println("User: " + user + " just singed in");
+                    System.out.println("SERVER > " + "User: " + user + " just singed in");
                     IPs.put(Integer.toString(packet.getPort()), packet.getAddress());
                 }
             } catch (IOException e) {

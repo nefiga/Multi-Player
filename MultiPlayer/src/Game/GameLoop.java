@@ -46,7 +46,7 @@ public class GameLoop extends Canvas implements Runnable {
 
     public void init() {
         int[] playerSprite = SpriteSheet.spriteSheet.getImage(0, 0, 16, 16);
-        player = new Player("Ner", playerSprite, 50, 50, 16, 16);
+        player = new Player("Nefiga", playerSprite, 50, 50, 16, 16);
     }
 
     @Override
@@ -109,7 +109,7 @@ public class GameLoop extends Canvas implements Runnable {
     }
 
     public void start() {
-        client = new GameClient(this, "192.168.1.21");
+        client = new GameClient(this, "localhost");
         client.start();
 
         init();

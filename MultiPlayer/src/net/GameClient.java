@@ -33,12 +33,12 @@ public class GameClient extends Thread {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            System.out.println("Server > " +" IP " + packet.getAddress().getHostAddress() + "  " + new String(packet.getData()));
+            System.out.println("CLIENT > " +" IP " + packet.getAddress().getHostAddress() + "  " + new String(packet.getData()));
         }
     }
 
     public void sendData(byte[] data) {
-        System.out.println("Sending data to: " + ipAddress.getHostAddress());
+        System.out.println("CLIENT > " + "Sending data to: " + ipAddress.getHostAddress() + " on port: " + "1331");
         DatagramPacket packet = new DatagramPacket(data, data.length, ipAddress, 1331);
         try {
             socket.send(packet);
