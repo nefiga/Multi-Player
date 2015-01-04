@@ -6,15 +6,17 @@ import java.io.Serializable;
 
 public abstract class Packet implements Serializable{
 
-    int packetType;
+    String packetType;
 
-    public Packet(int type) {
+    public Packet(String type) {
         this.packetType = type;
     }
 
-    public int getPacketType() {
+    public String getPacketType() {
         return packetType;
     }
+
+    public abstract byte[] getData();
 
     public abstract void updateGameFromData(GameLoop game);
 }

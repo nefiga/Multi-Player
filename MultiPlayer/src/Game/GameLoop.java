@@ -4,16 +4,13 @@ import entity.Player;
 import graphics.SpriteSheet;
 import net.GameClient;
 import net.GameServer;
+import net.Packet;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,7 +42,6 @@ public class GameLoop extends Canvas implements Runnable {
         setSize(size);
         frame = new JFrame();
         screen = new Screen(WIDTH, HEIGHT);
-        init();
     }
 
     public void init() {
@@ -113,13 +109,14 @@ public class GameLoop extends Canvas implements Runnable {
     }
 
     public void start() {
+        client = new GameClient(this, "192.168.1.21");
+        client.start();
+
+        init();
+
         gameThread = new Thread(this, "Game Thread");
         gameThread.start();
         running = true;
-
-        client = new GameClient(this, "192.168.1.21");
-        client.start();
-        client.sendData("ping".getBytes());
     }
 
     public void startServer() {
@@ -154,16 +151,8 @@ public class GameLoop extends Canvas implements Runnable {
         }
     }
 
-    public static void sendData(Serializable object) {
-        try {
-            ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
-            ObjectOutputStream objectOut = new ObjectOutputStream(byteOut);
-            objectOut.writeObject(object);
-            byte[] data = byteOut.toByteArray();
-            client.sendData(data);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static void sendData(Packet packet) {
+        client.sendData(packet.getData());
     }
 
     public static void main(String[] args) {

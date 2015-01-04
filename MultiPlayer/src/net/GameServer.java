@@ -1,21 +1,19 @@
 package net;
 
 import Game.GameLoop;
-import entity.Player;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.net.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.security.Key;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GameServer extends Thread {
 
     private DatagramSocket socket;
     private GameLoop game;
 
-    private List<Player> conectedPlayers = new ArrayList<Player>();
+    private Map<String, InetAddress> IPs = new HashMap<String, InetAddress>();
 
     public GameServer(GameLoop game) {
         this.game = game;
@@ -33,34 +31,34 @@ public class GameServer extends Thread {
 
             try {
                 socket.receive(packet);
-                Packet p = getPacket(packet.getData());
+                String type = new String(packet.getData()).substring(0, 2);
+                System.out.println("Packet Type: " + type);
+                if (type.equals("00") && !IPs.containsKey(Integer.toString(packet.getPort()))) {
+                    String user = new String(packet.getData());
+                    user = user.substring(2, user.length());
+                    System.out.println("User: " + user + " just singed in");
+                    IPs.put(Integer.toString(packet.getPort()), packet.getAddress());
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
+            sendData(packet.getData(), Integer.toString(packet.getPort()));
         }
     }
 
-    public void sendData(byte[] data, InetAddress ipAddress, int port) {
-        DatagramPacket packet = new DatagramPacket(data, data.length, ipAddress, port);
-        try {
-            socket.send(packet);
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void sendData(byte[] data, String excludePort) {
+        Object[] keys = IPs.keySet().toArray();
+        for (int i = 0; i < keys.length; i++) {
+            String portKey = (String) keys[i];
+            if (portKey.equals(excludePort)) continue;
+            try {
+                DatagramPacket packet = new DatagramPacket(data, data.length, IPs.get(portKey), Integer.getInteger(portKey));
+                socket.send(packet);
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-    }
-
-    public Packet getPacket(byte[] data) {
-        Packet packet = null;
-        try {
-            ByteArrayInputStream b = new ByteArrayInputStream(data);
-            ObjectInputStream o = new ObjectInputStream(b);
-            packet = (Packet) o.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return packet;
     }
 }
