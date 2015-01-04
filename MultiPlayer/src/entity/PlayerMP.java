@@ -13,4 +13,8 @@ public class PlayerMP extends Player{
         this.port = port;
     }
 
+    @Override
+    public void update() {
+
+    }
 }

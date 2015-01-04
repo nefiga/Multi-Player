@@ -13,10 +13,12 @@ public abstract class Packet implements Serializable{
     public static Packet getPacket(int type) {
         switch (type) {
             case 00:
-                return new Packet00Player();
+                return new Packet00PlayerLogIn();
         }
         return null;
     }
 
     public abstract void updateData(byte[] data);
+
+    public abstract byte[] getData();
 }

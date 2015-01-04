@@ -17,8 +17,8 @@ public class GameLoop extends Canvas implements Runnable {
     private Thread gameThread;
     private Screen screen;
 
-    private GameClient socketClient;
-    private GameServer server;
+    private static GameClient client;
+    private static GameServer server;
 
     private Player player;
 
@@ -109,9 +109,9 @@ public class GameLoop extends Canvas implements Runnable {
         gameThread.start();
         running = true;
 
-            socketClient = new GameClient(this, "localhost");
-            socketClient.start();
-            socketClient.sendData("ping".getBytes());
+        client = new GameClient(this, "localhost");
+        client.start();
+        client.sendData("ping".getBytes());
     }
 
     public void startServer() {
@@ -121,12 +121,18 @@ public class GameLoop extends Canvas implements Runnable {
     }
 
     public void stop() {
-        try {
-            gameThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+       while (gameThread.isAlive()) {
+           try {
+               gameThread.join();
+           } catch (InterruptedException e) {
+               e.printStackTrace();
+           }
+       }
         running = false;
+    }
+
+    public static void sendData(byte[] data) {
+        client.sendData(data);
     }
 
     public static void main(String[] args) {
