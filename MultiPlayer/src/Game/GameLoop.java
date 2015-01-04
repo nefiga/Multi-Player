@@ -10,6 +10,12 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GameLoop extends Canvas implements Runnable {
 
@@ -19,6 +25,8 @@ public class GameLoop extends Canvas implements Runnable {
 
     private static GameClient client;
     private static GameServer server;
+
+    private Map<String, Player> players = new HashMap<String, Player>();
 
     private Player player;
 
@@ -78,7 +86,7 @@ public class GameLoop extends Canvas implements Runnable {
     }
 
     public void update() {
-
+        player.update();
     }
 
     public void render() {
@@ -109,7 +117,7 @@ public class GameLoop extends Canvas implements Runnable {
         gameThread.start();
         running = true;
 
-        client = new GameClient(this, "localhost");
+        client = new GameClient(this, "192.168.1.21");
         client.start();
         client.sendData("ping".getBytes());
     }
@@ -121,18 +129,41 @@ public class GameLoop extends Canvas implements Runnable {
     }
 
     public void stop() {
-       while (gameThread.isAlive()) {
-           try {
-               gameThread.join();
-           } catch (InterruptedException e) {
-               e.printStackTrace();
-           }
-       }
+        while (gameThread.isAlive()) {
+            try {
+                gameThread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         running = false;
     }
 
-    public static void sendData(byte[] data) {
-        client.sendData(data);
+    public void addPlayer(Player player) {
+        players.put(player.getUserName(), player);
+    }
+
+    public void removePlayer(String userName) {
+        players.remove(userName);
+    }
+
+    public void renderPlayers(Screen screen) {
+        String[] users = (String[]) (players.keySet().toArray());
+        for (String u : users) {
+            players.get(u).render(screen);
+        }
+    }
+
+    public static void sendData(Serializable object) {
+        try {
+            ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
+            ObjectOutputStream objectOut = new ObjectOutputStream(byteOut);
+            objectOut.writeObject(object);
+            byte[] data = byteOut.toByteArray();
+            client.sendData(data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {

@@ -1,15 +1,25 @@
 package entity;
 
-import Game.Screen;
+
+import Game.GameLoop;
+import net.Packet00PlayerLogIn;
 
 public class Player extends Entity {
 
-    public Player(String name, int[] sprite, int x, int y, int width, int height) {
-        super(name, sprite, x, y, width, height);
+    public String userName;
+
+    public Player(String userName, int[] sprite, int x, int y, int width, int height) {
+        super(sprite, x, y, width, height);
+        this.userName = userName;
+        GameLoop.sendData(new Packet00PlayerLogIn(this.userName, this.x, this.y));
     }
 
     @Override
     public void update() {
 
+    }
+
+    public String getUserName() {
+        return userName;
     }
 }

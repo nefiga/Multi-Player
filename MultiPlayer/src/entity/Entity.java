@@ -4,15 +4,12 @@ import Game.Screen;
 
 public class Entity {
 
-    protected String name;
-
     protected int x, y;
     protected int width, height;
 
     protected int[] sprite;
 
-    public Entity(String name, int[] sprite, int x, int y, int width, int height) {
-        this.name = name;
+    public Entity(int[] sprite, int x, int y, int width, int height) {
         this.sprite = sprite;
         this.x = x;
         this.y = y;

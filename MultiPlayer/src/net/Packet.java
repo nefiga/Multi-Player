@@ -1,5 +1,7 @@
 package net;
 
+import Game.GameLoop;
+
 import java.io.Serializable;
 
 public abstract class Packet implements Serializable{
@@ -10,15 +12,9 @@ public abstract class Packet implements Serializable{
         this.packetType = type;
     }
 
-    public static Packet getPacket(int type) {
-        switch (type) {
-            case 00:
-                return new Packet00PlayerLogIn();
-        }
-        return null;
+    public int getPacketType() {
+        return packetType;
     }
 
-    public abstract void updateData(byte[] data);
-
-    public abstract byte[] getData();
+    public abstract void updateGameFromData(GameLoop game);
 }

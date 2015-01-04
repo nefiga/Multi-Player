@@ -1,14 +1,21 @@
 package net;
 
 import Game.GameLoop;
+import entity.Player;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameServer extends Thread {
 
     private DatagramSocket socket;
     private GameLoop game;
+
+    private List<Player> conectedPlayers = new ArrayList<Player>();
 
     public GameServer(GameLoop game) {
         this.game = game;
@@ -26,14 +33,11 @@ public class GameServer extends Thread {
 
             try {
                 socket.receive(packet);
+                Packet p = getPacket(packet.getData());
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            String message = new String(packet.getData()).trim();
-            System.out.println("Client > "  + "  Client port number: " + packet.getPort() + "  " + new String(packet.getData()));
-            if (message.equals("ping")) {
-                sendData("pong".getBytes(), packet.getAddress(), packet.getPort());
-            }
+
         }
     }
 
@@ -44,5 +48,19 @@ public class GameServer extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public Packet getPacket(byte[] data) {
+        Packet packet = null;
+        try {
+            ByteArrayInputStream b = new ByteArrayInputStream(data);
+            ObjectInputStream o = new ObjectInputStream(b);
+            packet = (Packet) o.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return packet;
     }
 }
