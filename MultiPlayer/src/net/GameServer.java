@@ -35,7 +35,7 @@ public class GameServer extends Thread {
                 System.out.println("SERVER > " + "Packet Type: " + type);
                 if (type.equals("00")) {
                     String user = new String(packet.getData()).trim();
-                    user = user.substring(2, user.length());
+                    user = user.substring(2, 5);
                     System.out.println("SERVER > " + "User: " + user + " just singed in");
                     IPs.put(Integer.toString(packet.getPort()), packet.getAddress());
                 }
@@ -52,7 +52,9 @@ public class GameServer extends Thread {
             String portKey = (String) keys[i];
             if (portKey.equals(excludePort)) continue;
             try {
-                DatagramPacket packet = new DatagramPacket(data, data.length, IPs.get(portKey), Integer.getInteger(portKey));
+                int portInt = Integer.parseInt(portKey);
+                InetAddress address = IPs.get(portKey);
+                DatagramPacket packet = new DatagramPacket(data, data.length, address, portInt);
                 socket.send(packet);
             } catch (UnknownHostException e) {
                 e.printStackTrace();

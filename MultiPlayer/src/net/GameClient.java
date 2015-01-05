@@ -9,10 +9,12 @@ public class GameClient extends Thread {
 
     private InetAddress ipAddress;
     private DatagramSocket socket;
+    private PacketParser parser;
     private GameLoop game;
 
     public GameClient(GameLoop game, String ipAddress) {
         this.game = game;
+        parser = new PacketParser(game);
         try {
             this.socket = new DatagramSocket();
             this.ipAddress = InetAddress.getByName(ipAddress);
@@ -30,6 +32,7 @@ public class GameClient extends Thread {
 
             try {
                 socket.receive(packet);
+                parser.parseData(packet.getData());
             } catch (IOException e) {
                 e.printStackTrace();
             }
