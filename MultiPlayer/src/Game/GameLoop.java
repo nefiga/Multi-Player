@@ -5,14 +5,15 @@ import graphics.SpriteSheet;
 import net.GameClient;
 import net.GameServer;
 import net.Packet;
+import net.Packet00PlayerLogIn;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameLoop extends Canvas implements Runnable {
 
@@ -23,7 +24,7 @@ public class GameLoop extends Canvas implements Runnable {
     private static GameClient client;
     private static GameServer server;
 
-    private Map<String, Player> players = new HashMap<String, Player>();
+    private List<Player> connectedPlayers = new ArrayList<Player>();
 
     private Player player;
 
@@ -46,7 +47,8 @@ public class GameLoop extends Canvas implements Runnable {
 
     public void init() {
         int[] playerSprite = SpriteSheet.spriteSheet.getImage(0, 0, 16, 16);
-        player = new Player("Nefiga", playerSprite, 50, 50, 16, 16);
+        player = new Player("Nefiga", playerSprite, 150, 150, 16, 16);
+        GameLoop.sendData(new Packet00PlayerLogIn(player.getUserName(), 50, 50));
     }
 
     @Override
@@ -97,6 +99,7 @@ public class GameLoop extends Canvas implements Runnable {
         screen.clear(1454567);
 
         player.render(screen);
+        renderPlayers(screen);
 
         int[] screenPixels = screen.getPixels();
         for (int i = 0; i < pixels.length; i++) {
@@ -137,17 +140,16 @@ public class GameLoop extends Canvas implements Runnable {
     }
 
     public void addPlayer(Player player) {
-        players.put(player.getUserName(), player);
+       connectedPlayers.add(player);
     }
 
     public void removePlayer(String userName) {
-        players.remove(userName);
+        connectedPlayers.remove(player);
     }
 
     public void renderPlayers(Screen screen) {
-        String[] users = (String[]) (players.keySet().toArray());
-        for (String u : users) {
-            players.get(u).render(screen);
+        for (Player p : connectedPlayers) {
+            p.render(screen);
         }
     }
 
