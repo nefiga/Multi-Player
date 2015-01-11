@@ -47,13 +47,11 @@ public class GameServer extends Thread {
     }
 
     public void sendData(byte[] data, String excludePort) {
-        Object[] keys = IPs.keySet().toArray();
-        for (int i = 0; i < keys.length; i++) {
-            String portKey = (String) keys[i];
-            if (portKey.equals(excludePort)) continue;
+        for (String key : IPs.keySet()) {
+            if (key.equals(excludePort)) continue;
             try {
-                int portInt = Integer.parseInt(portKey);
-                InetAddress address = IPs.get(portKey);
+                int portInt = Integer.parseInt(key);
+                InetAddress address = IPs.get(key);
                 DatagramPacket packet = new DatagramPacket(data, data.length, address, portInt);
                 socket.send(packet);
             } catch (UnknownHostException e) {

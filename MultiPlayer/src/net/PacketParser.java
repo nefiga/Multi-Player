@@ -17,7 +17,7 @@ public class PacketParser {
         String packetType = stringData.substring(0, 2);
         if (packetType.equals("00")) {
             String[] dataLines = stringData.split(",");
-            String userName = dataLines[0];
+            String userName = dataLines[0].substring(2);
             int x = Integer.parseInt(dataLines[1]);
             int y = Integer.parseInt(dataLines[2]);
             int[] playerSprite = SpriteSheet.spriteSheet.getImage(0, 0, 16, 16);
@@ -25,7 +25,7 @@ public class PacketParser {
         }
         if (packetType.equals("01")) {
             String[] dataLines = stringData.split(",");
-            String userName = dataLines[0];
+            String userName = dataLines[0].substring(2);
             int x = Integer.parseInt(dataLines[1]);
             int y = Integer.parseInt(dataLines[2]);
             game.updatePlayerPosition(userName, x, y);

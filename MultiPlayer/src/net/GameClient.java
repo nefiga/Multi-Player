@@ -25,6 +25,7 @@ public class GameClient extends Thread {
         }
     }
 
+    @Override
     public void run() {
         while (true) {
             byte[] data = new byte[1024];
@@ -41,7 +42,7 @@ public class GameClient extends Thread {
     }
 
     public void sendData(byte[] data) {
-        System.out.println("CLIENT > " + "Sending data to: " + ipAddress.getHostAddress() + " on port: " + "1331");
+        //System.out.println("CLIENT > " + "Sending data to: " + ipAddress.getHostAddress() + " on port: " + "1331");
         DatagramPacket packet = new DatagramPacket(data, data.length, ipAddress, 1331);
         try {
             socket.send(packet);
