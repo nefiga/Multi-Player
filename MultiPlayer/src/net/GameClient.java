@@ -37,7 +37,7 @@ public class GameClient extends Thread {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            System.out.println("CLIENT > " +" IP " + packet.getAddress().getHostAddress() + "  " + new String(packet.getData()));
+            //System.out.println("CLIENT > " +" IP " + packet.getAddress().getHostAddress() + "  " + new String(packet.getData()));
         }
     }
 

@@ -31,8 +31,8 @@
       <file leaf-file-name="GameLoop.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MultiPlayer/src/Game/GameLoop.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1908" max-vertical-offset="3213">
-              <caret line="123" column="0" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="684" max-vertical-offset="3213">
+              <caret line="56" column="10" selection-start-line="56" selection-start-column="10" selection-end-line="56" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#758#776#0" expanded="true" />
@@ -95,12 +95,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameServer.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameServer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MultiPlayer/src/net/GameServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="152" max-vertical-offset="1088">
-              <caret line="38" column="60" selection-start-line="38" selection-start-column="60" selection-end-line="39" selection-end-column="60" />
-              <folding />
+            <state vertical-scroll-proportion="0.22006473" vertical-offset="255" max-vertical-offset="1394">
+              <caret line="29" column="41" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
+              <folding>
+                <element signature="e#318#339#0" expanded="true" />
+                <element signature="e#405#421#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -108,17 +111,17 @@
       <file leaf-file-name="GameClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MultiPlayer/src/net/GameClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="334" max-vertical-offset="952">
-              <caret line="30" column="41" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="952">
+              <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PacketParser.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PacketParser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MultiPlayer/src/net/PacketParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6537217" vertical-offset="21" max-vertical-offset="646">
+            <state vertical-scroll-proportion="0.0" vertical-offset="21" max-vertical-offset="646">
               <caret line="27" column="54" selection-start-line="27" selection-start-column="54" selection-end-line="27" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -149,9 +152,9 @@
         <option value="$PROJECT_DIR$/MultiPlayer/src/entity/PlayerMP.java" />
         <option value="$PROJECT_DIR$/MultiPlayer/src/Game/GameLoop.java" />
         <option value="$PROJECT_DIR$/MultiPlayer/src/entity/Player.java" />
+        <option value="$PROJECT_DIR$/MultiPlayer/src/net/PacketParser.java" />
         <option value="$PROJECT_DIR$/MultiPlayer/src/net/GameClient.java" />
         <option value="$PROJECT_DIR$/MultiPlayer/src/net/GameServer.java" />
-        <option value="$PROJECT_DIR$/MultiPlayer/src/net/PacketParser.java" />
       </list>
     </option>
   </component>
@@ -586,7 +589,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="321" max-vertical-offset="1122">
           <caret line="35" column="40" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
-          <folding />
+          <folding>
+            <element signature="e#318#339#0" expanded="true" />
+            <element signature="e#405#421#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -648,14 +654,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MultiPlayer/src/net/Packet01PlayerMoved.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
-          <caret line="9" column="63" selection-start-line="9" selection-start-column="63" selection-end-line="9" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MultiPlayer/src/entity/PlayerMP.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
@@ -674,10 +672,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files (x86)/Java/jdk1.7.0_45/src.zip!/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3321234" vertical-offset="11445" max-vertical-offset="33592">
+          <caret line="741" column="16" selection-start-line="741" selection-start-column="16" selection-end-line="741" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MultiPlayer/src/net/GameClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="952">
+          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MultiPlayer/src/net/PacketParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="21" max-vertical-offset="646">
+          <caret line="27" column="54" selection-start-line="27" selection-start-column="54" selection-end-line="27" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/MultiPlayer/src/Game/GameLoop.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1908" max-vertical-offset="3213">
-          <caret line="123" column="0" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="684" max-vertical-offset="3213">
+          <caret line="56" column="10" selection-start-line="56" selection-start-column="10" selection-end-line="56" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#758#776#0" expanded="true" />
@@ -689,36 +713,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files (x86)/Java/jdk1.7.0_45/src.zip!/java/lang/Thread.java">
+    <entry file="file://$PROJECT_DIR$/MultiPlayer/src/net/Packet01PlayerMoved.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3321234" vertical-offset="11445" max-vertical-offset="33592">
-          <caret line="741" column="16" selection-start-line="741" selection-start-column="16" selection-end-line="741" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
+          <caret line="9" column="63" selection-start-line="9" selection-start-column="63" selection-end-line="9" selection-end-column="63" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MultiPlayer/src/net/GameServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="152" max-vertical-offset="1088">
-          <caret line="38" column="60" selection-start-line="38" selection-start-column="60" selection-end-line="39" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MultiPlayer/src/net/GameClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="344" max-vertical-offset="952">
-          <caret line="30" column="41" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MultiPlayer/src/net/PacketParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6537217" vertical-offset="21" max-vertical-offset="646">
-          <caret line="27" column="54" selection-start-line="27" selection-start-column="54" selection-end-line="27" selection-end-column="54" />
+        <state vertical-scroll-proportion="0.22006473" vertical-offset="255" max-vertical-offset="1394">
+          <caret line="29" column="41" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#318#339#0" expanded="true" />
+            <element signature="e#405#421#0" expanded="true" />
           </folding>
         </state>
       </provider>
