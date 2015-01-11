@@ -24,4 +24,12 @@ public class Entity {
     public void render(Screen screen) {
         screen.render(sprite, x, y, width, height);
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 }

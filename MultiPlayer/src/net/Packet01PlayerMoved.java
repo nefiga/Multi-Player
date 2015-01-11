@@ -2,20 +2,16 @@ package net;
 
 import Game.GameLoop;
 
-public class Packet00PlayerLogIn extends Packet{
+public class Packet01PlayerMoved extends Packet{
 
     String userName;
     int x, y;
 
-    public Packet00PlayerLogIn(String userName, int x, int y) {
-        super("00");
+    public Packet01PlayerMoved(String userName, int x, int y) {
+        super("01");
         this.userName = userName;
         this.x = x;
         this.y = y;
-    }
-
-    public String getUserName() {
-        return userName;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package Game;
 
 import entity.Player;
+import entity.PlayerMP;
 import graphics.SpriteSheet;
 import net.GameClient;
 import net.GameServer;
@@ -13,18 +14,21 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GameLoop extends Canvas implements Runnable {
 
     private JFrame frame;
     private Thread gameThread;
     private Screen screen;
+    private Keyboard keyboard;
 
     private static GameClient client;
     private static GameServer server;
 
-    private List<Player> connectedPlayers = new ArrayList<Player>();
+    private Map<String, PlayerMP> connectedPlayers = new HashMap<String, PlayerMP>();
 
     private Player player;
 
@@ -46,9 +50,11 @@ public class GameLoop extends Canvas implements Runnable {
     }
 
     public void init() {
+        keyboard = new Keyboard();
+        frame.addKeyListener(keyboard);
         int[] playerSprite = SpriteSheet.spriteSheet.getImage(0, 0, 16, 16);
-        player = new Player("Nefiga", playerSprite, 150, 150, 16, 16);
-        GameLoop.sendData(new Packet00PlayerLogIn(player.getUserName(), 50, 50));
+        player = new Player("Nefiga", playerSprite, 150, 150, 16, 16, keyboard);
+        GameLoop.sendData(new Packet00PlayerLogIn(player.getUserName(), player.getX(), player.getY()));
     }
 
     @Override
@@ -84,6 +90,7 @@ public class GameLoop extends Canvas implements Runnable {
     }
 
     public void update() {
+        keyboard.update();
         player.update();
     }
 
@@ -140,8 +147,8 @@ public class GameLoop extends Canvas implements Runnable {
         running = false;
     }
 
-    public void addPlayer(Player player) {
-       connectedPlayers.add(player);
+    public void addPlayer(PlayerMP player) {
+       connectedPlayers.put(player.getUserName(), player);
     }
 
     public void removePlayer(String userName) {
@@ -149,9 +156,13 @@ public class GameLoop extends Canvas implements Runnable {
     }
 
     public void renderPlayers(Screen screen) {
-        for (Player p : connectedPlayers) {
-            p.render(screen);
+        for (String p : connectedPlayers.keySet()) {
+            connectedPlayers.get(p).render(screen);
         }
+    }
+
+    public void updatePlayerPosition(String userName, int x, int y) {
+        connectedPlayers.get(userName).updatePosition(x, y);
     }
 
     public static void sendData(Packet packet) {
