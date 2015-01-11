@@ -35,7 +35,7 @@ public class GameServer extends Thread {
                 System.out.println("SERVER > " + "Packet Type: " + type);
                 if (type.equals("00")) {
                     String user = new String(packet.getData()).trim();
-                    user = user.substring(2, 5);
+                    user = user.substring(2, user.indexOf(','));
                     System.out.println("SERVER > " + "User: " + user + " just singed in");
                     IPs.put(Integer.toString(packet.getPort()), packet.getAddress());
                 }

@@ -112,7 +112,8 @@ public class GameLoop extends Canvas implements Runnable {
     }
 
     public void start() {
-        client = new GameClient(this, "localhost");
+        String ipAddress = JOptionPane.showConfirmDialog(this, "Are you on local host?") == 0 ? "localhost" : "192.168.1.3";
+        client = new GameClient(this, ipAddress);
         client.start();
 
         init();
