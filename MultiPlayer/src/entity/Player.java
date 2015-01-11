@@ -1,7 +1,9 @@
 package entity;
 
 
+import Game.GameLoop;
 import Game.Keyboard;
+import net.Packet01PlayerMoved;
 
 public class Player extends Entity {
 
@@ -26,6 +28,7 @@ public class Player extends Entity {
         if (keyboard.down) y++;
         if (keyboard.left) x--;
         if (keyboard.right) x++;
+        GameLoop.sendData(new Packet01PlayerMoved(userName, x, y));
     }
 
     public String getUserName() {
